@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="EcoHuerta: proyecto de práctica de JavaScript con Bootstrap">
+  <meta name="description" content="Aprende JavaScript y administra tus cultivos con EcoHuerta.">
   <title>EcoHuerta | Gestor de cultivos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
@@ -29,8 +29,8 @@
           <div class="col-lg-8">
             <span class="badge text-bg-light border text-success mb-3">Aprende JavaScript construyendo</span>
             <h1 class="display-5 fw-bold">Cuida tus cultivos con información clara.</h1>
-            <p class="lead mb-4">Esta es la interfaz inicial de EcoHuerta. Durante el laboratorio agregarás cálculos, decisiones, búsqueda, filtros y registro de cultivos.</p>
-            <a class="btn btn-success btn-lg" href="#registro">Ir al formulario</a>
+            <p class="lead mb-4">Registra tus cultivos, consulta sus etapas y organiza el cuidado de tu huerta. Tus datos se conservan en este navegador.</p>
+            <a class="btn btn-success btn-lg" href="#registro">Registrar un cultivo</a>
           </div>
           <div class="col-lg-4">
             <div class="hero-art p-4 rounded-4 text-center" aria-label="Ilustración de una planta">
@@ -65,14 +65,14 @@
           </div></div>
         </div>
       </div>
-      <p class="small text-secondary mt-3">Los valores iniciales son ilustrativos. Tu código deberá calcularlos a partir del arreglo de cultivos.</p>
+      <p class="small text-secondary mt-3">Los indicadores se calculan automáticamente con todos tus registros, aunque haya filtros activos.</p>
     </section>
 
     <section id="cultivos" class="container pb-5" aria-labelledby="cultivosTitulo">
       <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
         <div>
           <h2 id="cultivosTitulo" class="h3 mb-1">Mis cultivos</h2>
-          <p class="text-secondary mb-0">Estas tarjetas son un ejemplo HTML: más adelante las generarás con JavaScript.</p>
+          <p class="text-secondary mb-0">Busca por nombre y combina la búsqueda con un filtro por estado.</p>
         </div>
         <div class="row g-2">
           <div class="col-sm-7">
@@ -126,6 +126,7 @@
         </div>
       </div>
       <p id="sinResultados" class="alert alert-info mt-3 d-none" role="status">No hay cultivos que coincidan con la búsqueda.</p>
+      <p id="avisoAlmacenamiento" class="alert alert-warning mt-3 d-none" role="status" aria-live="polite"></p>
     </section>
 
     <section id="registro" class="bg-light py-5" aria-labelledby="registroTitulo">
@@ -133,8 +134,8 @@
         <div class="row g-4 align-items-start">
           <div class="col-lg-4">
             <h2 id="registroTitulo" class="h3">Registrar un cultivo</h2>
-            <p>El formulario ya está construido. Tu tarea será validar sus valores, convertir los datos numéricos y agregar un nuevo objeto al arreglo.</p>
-            <p class="small text-secondary">Al iniciar, el botón todavía no registra cultivos; completarás ese comportamiento durante el laboratorio.</p>
+            <p>Registra un cultivo indicando sus días, consumo semanal de agua y etapa actual.</p>
+            <p class="small text-secondary">Los datos se guardan en el navegador y estarán disponibles cuando regreses a esta página.</p>
           </div>
           <div class="col-lg-8">
             <form id="formCultivo" class="card border-0 shadow-sm" novalidate>

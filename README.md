@@ -1,36 +1,63 @@
 # EcoHuerta — Fundamentos de JavaScript
 
-EcoHuerta es una aplicación web de práctica para aprender **JavaScript desde cero** utilizando una interfaz preparada con **HTML, CSS y Bootstrap 5.3**. El objetivo es transformar una página estática en un gestor sencillo de cultivos.
+EcoHuerta es una aplicación web educativa construida con HTML, Bootstrap 5.3 y
+JavaScript nativo. Incluye los ejercicios de fundamentos y una solución
+funcional para administrar cultivos.
 
-## Laboratorio
+## Ejecutar
 
-- [Laboratorio 1 — Fundamentos de JavaScript y programación en el navegador](laboratorios/laboratorio-01.md)
+Abre `fundamentos.html` para ejecutar `js/fundamentos.js` y observar los
+ejercicios de las prácticas 1.1–1.5 en la consola del navegador. Abre
+`index.html` para usar la aplicación. No requiere Node.js, npm ni un servidor.
+Se necesita conexión a Internet para cargar Bootstrap desde jsDelivr.
 
-## Archivos de trabajo
+## Funcionalidades
 
-| Archivo | Uso |
+- Tarjetas e indicadores generados a partir del arreglo de cultivos.
+- Registro con validación de nombre, días, agua y estado.
+- Búsqueda por nombre sin distinguir mayúsculas y filtro por estado; ambos se
+  pueden combinar.
+- Mensaje accesible cuando no hay resultados.
+- Persistencia de los registros con `localStorage`, con validación al
+  recuperarlos. Los datos permanecen en el mismo navegador; no se envían a un
+  servidor.
+- Mensajes de error si el almacenamiento del navegador no está disponible o
+  contiene datos inválidos.
+
+## Archivos principales
+
+| Archivo | Contenido |
 | --- | --- |
-| [fundamentos.html](fundamentos.html) | Página de apoyo para ejecutar instrucciones y observar la consola. |
-| [js/fundamentos.js](js/fundamentos.js) | Variables, tipos, operadores, condiciones, ciclos, arreglos, objetos y funciones. |
-| [index.html](index.html) | Interfaz inicial del gestor de cultivos. |
-| [js/main.js](js/main.js) | Manipulación del DOM, eventos, formularios y actividad integradora. |
-| [css/style.css](css/style.css) | Estilos propios sobre Bootstrap. |
+| [fundamentos.html](fundamentos.html) | Página de apoyo para ejecutar las prácticas en consola. |
+| [js/fundamentos.js](js/fundamentos.js) | Soluciones y ejemplos de fundamentos, prácticas 1.1–1.5. |
+| [index.html](index.html) | Interfaz Bootstrap y gestor de cultivos. |
+| [js/main.js](js/main.js) | Renderizado, búsqueda, filtros, validación y persistencia. |
+| [css/style.css](css/style.css) | Estilos complementarios de la página. |
+| [practicas-1-6-a-1-8.md](practicas-1-6-a-1-8.md) | Notas y soluciones de DOM, formularios y depuración. |
+| [laboratorios/laboratorio-01.md](laboratorios/laboratorio-01.md) | Guía completa del laboratorio y sus actividades. |
 
-## Cómo comenzar
+## Comprobaciones
 
-1. Descarga o clona el repositorio y abre la carpeta en **Visual Studio Code**.
-2. Abre `fundamentos.html` en el navegador para realizar las primeras prácticas. Presiona **F12**, entra a **Consola** y observa la salida de `js/fundamentos.js`.
-3. Abre `index.html` para observar la interfaz de EcoHuerta. Utiliza `js/main.js` para incorporar la interacción indicada en el laboratorio.
-4. Sigue las instrucciones de [Laboratorio 1](laboratorios/laboratorio-01.md), desde la Práctica 1.1 hasta la actividad integradora.
+1. Buscar `TOM` muestra Tomate, sin importar las mayúsculas.
+2. Registrar Albahaca con 10 días, 2.5 litros y estado Semilla actualiza las
+   tarjetas e indicadores; un formulario inválido no agrega registros.
+3. Registrar un cultivo y recargar la página conserva la lista y sus
+   indicadores.
 
-No necesitas Node.js, npm ni un servidor para los ejercicios propuestos. Puedes abrir los archivos HTML directamente en un navegador moderno. Se requiere **conexión a internet para cargar Bootstrap desde su CDN**; la lógica JavaScript propia se ejecuta en el navegador sin servicios externos.
+Para repetir las pruebas desde los tres cultivos iniciales, abre la consola del
+navegador, ejecuta
+`localStorage.removeItem("ecohuerta.cultivos.v1")` y recarga la página.
 
-> **Punto de partida:** la interfaz incluye tarjetas ilustrativas y controles visibles, pero el registro, búsqueda, filtrado y actualización de indicadores todavía no están programados. Esas funcionalidades forman parte del trabajo del aprendiz.
+### Problema resuelto
 
-## Tecnología
+`Number("")` devuelve `0`, por lo que un campo de días vacío podría pasar por un
+cero válido si se convierte antes de revisar el texto. El formulario primero
+comprueba que los campos no estén vacíos y luego verifica el tipo y el rango de
+cada dato. Los registros guardados se validan de nuevo al restaurarlos.
 
-- JavaScript nativo (sin frameworks).
-- Bootstrap **5.3.8** mediante CDN oficial de jsDelivr.
-- HTML5 y un archivo CSS adicional.
+## Tecnología y referencias
 
-Documentación de consulta: [JavaScript en MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide) y [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/).
+- JavaScript nativo, HTML5 y CSS.
+- Bootstrap 5.3.8 desde el CDN de jsDelivr.
+- [Guía de JavaScript — MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide).
+- [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/).

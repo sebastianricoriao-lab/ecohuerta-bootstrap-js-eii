@@ -4,6 +4,12 @@ JavaScript permite que una página web responda a las acciones de las personas y
 
 **Objetivo:** comprender y aplicar los fundamentos de JavaScript mediante ejercicios en la consola y la construcción progresiva de un gestor de cultivos.
 
+> **Solución de referencia:** esta copia del repositorio incluye una
+> implementación funcional en `js/main.js` y `js/fundamentos.js`. Puedes probarla
+> primero y después recorrer las actividades para comprender y reconstruir cada
+> parte. La ampliación de persistencia con `localStorage` también está
+> implementada.
+
 ## Antes de comenzar
 
 Necesitas nociones básicas de HTML (etiquetas, atributos e identificadores), Visual Studio Code y un navegador moderno. No necesitas Node.js, npm, bases de datos ni extensiones obligatorias.
@@ -12,7 +18,9 @@ Necesitas nociones básicas de HTML (etiquetas, atributos e identificadores), Vi
 2. Identifica `fundamentos.html`, `index.html`, `js/fundamentos.js` y `js/main.js`.
 3. Abre `fundamentos.html` en el navegador. Presiona **F12** (o **Ctrl + Mayús + I**) y selecciona **Consola**.
 4. Comprueba que aparece el mensaje **EcoHuerta: JavaScript conectado correctamente.**
-5. Abre `index.html`. Recorre las tarjetas, la búsqueda, los indicadores y el formulario. Los controles todavía no realizan las operaciones del gestor: las desarrollarás en las prácticas.
+5. Abre `index.html`. Prueba las tarjetas, la búsqueda, los indicadores, el
+   formulario y la persistencia. Después estudia las prácticas para reconocer
+   cómo se construye cada comportamiento.
 
 Trabajarás en **`js/fundamentos.js` durante las prácticas 1.1 a 1.5** y en **`js/main.js` durante las prácticas 1.6 a 1.8 y la actividad integradora**. Guarda los cambios y recarga el HTML correspondiente. Los archivos HTML cargan JavaScript con `defer`; por eso el código se ejecuta después de que el navegador analiza el documento.
 
@@ -1097,7 +1105,10 @@ const cultivos = [
 - `estado`: únicamente `semilla`, `crecimiento` o `cosecha`.
 - Los estados son etiquetas registradas por el usuario; **no se deducen automáticamente** de los días de cultivo.
 - Los nombres pueden repetirse: dos registros distintos podrían representar cultivos con el mismo nombre.
-- No se usa base de datos. Si recargas la página, se pierden los cultivos añadidos durante esa visita, salvo que realices la ampliación opcional de persistencia.
+- No se usa base de datos ni se envían datos a un servidor. Los registros se
+  guardan en `localStorage` y persisten en el mismo navegador. Si los datos
+  guardados son inválidos o el almacenamiento está bloqueado, se informa el
+  problema y se muestran los cultivos de ejemplo.
 
 ### Requisitos funcionales
 
@@ -1162,7 +1173,7 @@ Cuando la búsqueda y el filtro no encuentren registros, no deben quedar tarjeta
 | 14 | Escribir `<b>Prueba</b>` como nombre | El texto se muestra literalmente; no se interpreta como etiqueta HTML |
 | 15 | Filtrar después de agregar un cultivo | El nuevo registro se puede localizar si coincide con las condiciones |
 | 16 | Registrar un cultivo inválido | Los indicadores conservan sus valores previos |
-| 17 | Recargar la página | Vuelven los tres registros iniciales, salvo que hayas implementado persistencia opcional |
+| 17 | Recargar la página después de agregar registros | Se conservan los cultivos y los indicadores; para repetir el caso desde cero, elimina la clave `ecohuerta.cultivos.v1` del almacenamiento local |
 
 Para las pruebas 8 y 9, limpia la búsqueda y deja el filtro en «Todos» cuando necesites comprobar todas las tarjetas. Recuerda que el total de registros no depende del filtro elegido.
 
@@ -1178,19 +1189,19 @@ Antes de entregar, comprueba lo siguiente:
 - [ ] Las búsquedas funcionan con diferentes mayúsculas y minúsculas.
 - [ ] La búsqueda combinada con el filtro funciona incluso sin coincidencias.
 - [ ] La Consola no presenta errores no intencionales al interactuar con la página.
-- [ ] Comprendo qué partes de mi programa solo viven en la memoria del navegador.
+- [ ] Comprendo que los registros se conservan en el almacenamiento local de este navegador y que no se sincronizan con otros dispositivos.
 
 ### Ampliaciones opcionales
 
 Realiza estas ampliaciones **solo después de cumplir las pruebas obligatorias**:
 
 1. Agrega un botón **Eliminar** a cada tarjeta. Al pulsarlo debe eliminarse exclusivamente el cultivo correspondiente y recalcularse la interfaz. Piensa cómo identificar cada registro si hay dos cultivos con el mismo nombre.
-2. Guarda el arreglo con `localStorage.setItem()` y `JSON.stringify()`; al abrir la página recupéralo con `localStorage.getItem()` y `JSON.parse()`. Valida la información recuperada antes de utilizarla. Considera qué sucede si aún no existe ninguna clave guardada o el contenido no es válido.
+2. **Implementada en esta solución:** guarda el arreglo con `localStorage.setItem()` y `JSON.stringify()`; al abrir la página recupéralo con `localStorage.getItem()` y `JSON.parse()`. Valida la información recuperada antes de utilizarla y considera la clave ausente, los datos inválidos y el almacenamiento no disponible.
 3. Agrega un indicador que muestre el total de litros semanales necesarios para todos los cultivos.
 4. Permite ordenar la lista por nombre o por días de cultivo, sin cambiar los valores almacenados.
 5. Añade un modo oscuro utilizando `data-bs-theme` de Bootstrap y registra la preferencia del usuario.
 
-Estas ampliaciones requieren investigar algunos detalles nuevos; no son indispensables para completar el laboratorio.
+Las ampliaciones 1 y 3–5 siguen siendo opcionales. La persistencia (ampliación 2) ya está implementada en esta solución.
 
 ---
 
